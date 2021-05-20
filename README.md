@@ -1,2 +1,6 @@
 # Hydra-introduction
-These are the slides from an introduction to Hydra workshop held at NMNH on 6/11/18
+Material for Introduction to Hydra workshops
+
+Hands-on reference: [hydra-intro.md](hydra-intro.md)
+
+Other helpful resources can be found in the [HydraResources](https://github.com/SmithsonianWorkshops/HydraResources) GitHub repository
