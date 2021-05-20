@@ -316,9 +316,9 @@ If nothing appears here, then your job is finished, but you can't tell yet if it
 
 **If your job finishes without producing the expected output files, your first instinct should be to check the log file.**
 
-TODO: I don't have the log file going into log
+By default the log file is located in the same location as where you submitted the job file, which is the `job` directory. You can later move the log file to the `logs` directory with `mv iqtree.log ../logs`
 
-To check the log file, `cd` to the `log/` directory and read the entire contents with the `more` command.
+Change into the jobs directory if you're not there already and view the log file
 
 ```
 $ more iqtree.log
