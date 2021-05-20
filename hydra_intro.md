@@ -345,9 +345,10 @@ $ qacct+ -j {job ID}
 
 The best way to transfer files depends on your connection to Hydra.
 
-TODO: work on this :)
-
-If you haven't already, go ahead and install a file transfer client. We recommend FileZilla, which you can download from [https://filezilla-project.org/download.php?show_all=1](https://filezilla-project.org/download.php?show_all=1). DO NOT USE THE SKETCHY INSTALLER AT [https://filezilla-project.org/download.php?type=client](https://filezilla-project.org/download.php?type=client), which comes with "bundled offers".
+- Telework: The ffsend utility works well for small files.
+- Windows or Mac directly connected to the Smithsonian network
+  - The `scp` command is a great utility for transferring files to and from Hydra.
+  - For a GUI program we recommend FileZilla, which you can download from [https://filezilla-project.org/download.php?show_all=1](https://filezilla-project.org/download.php?show_all=1)
 
 In the Quickconnect toolbar at the top of the window enter:
 
@@ -362,7 +363,7 @@ The files listed on the left side of the window are on your local computer, thos
 
 Enter your `/scratch/genomics/{user}` filepath in the "Remote site" entry on the right side. You can than use the file tree on the right to navigate to your result files.
 
-Drag the ".treefile" file to the left side in an appropriate directory on your local computer.
+Drag the file ending in ".treefile" to the left side in an appropriate directory on your local computer.
 
 Now, go to [https://icytree.org/](https://icytree.org/) in a web browser, and open up the ".treefile" file to view the tree.
 
