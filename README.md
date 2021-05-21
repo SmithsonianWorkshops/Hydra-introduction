@@ -3,7 +3,7 @@
 
 ## Material for Intro Workshop
 - Presentation slides: [hydra_intro_slides.pdf](hydra_intro_slides.pdf)
-- Hands-on reference: [hydra-intro.md](hydra-intro.md)
+- Hands-on reference: [hydra_intro.md](hydra_intro.md)
 
 
 ## Useful public Hydra links
