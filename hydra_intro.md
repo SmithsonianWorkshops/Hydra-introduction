@@ -346,6 +346,7 @@ $ qacct+ -j {job ID}
 The best way to transfer files depends on your connection to Hydra.
 
 - Telework: The ffsend utility works well for small files.
+  - After loading the ffsend module, use the command `ffsend upload {filename}`
 - Windows or Mac directly connected to the Smithsonian network
   - The `scp` command is a great utility for transferring files to and from Hydra.
   - For a GUI program we recommend FileZilla, which you can download from [https://filezilla-project.org/download.php?show_all=1](https://filezilla-project.org/download.php?show_all=1)
