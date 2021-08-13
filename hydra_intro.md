@@ -270,6 +270,8 @@ iqtree -s ../data/raw/exon_50per_taxa.phy \
 
 This will generate the contents of your "job file" at the bottom. Click on the "Check if OK" button for any errors and then "Save it" to save to your computer.
 
+By default, the QSub Generator site will export this job file with a filename of "qsub.job", but it can be easy to lose track of several different versions of the same name ("Did I set up that analysis in qsub.job(54) or qsub.job(27)?"). Let's use the same job name from our job script, and rename the file to "iqtree.job".
+
 Now we need to get this into a file on Hydra. We'll use the utility ffsend hosted on the site https://send.vis.ee which uploads your files to a cloud service and returns a URL you can download the file from on Hydra.
 
 Open the https://send.vis.ee website and upload your file.
