@@ -404,5 +404,3 @@ And then the same iqtree command -- but changing the data paths, since we're in 
 ```
 iqtree -s ../data/raw/exon_50per_taxa.phy -m GTR+F+R4 -nt $NSLOTS -pre ../data/results/exon_50per_taxa
 ```
-
-Note: in the interactive queue, `$NSLOTS` is not set by the system, so we need to use `-nt 2` (2 for the two CPUs we requested in the `qrsh -mthread 2` command) instead of `-nt $NSLOTS` like you did in the submitted job file.
