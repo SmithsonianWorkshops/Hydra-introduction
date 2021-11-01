@@ -51,7 +51,7 @@ After attending this workshop, we hope users come away with these skills:
 * The [Wiki](https://confluence.si.edu/display/HPC/High+Performance+Computing) contains detailed documentation
 * Email `si-hpc-admin@si.edu` for system-level issues
 * For non-CfA users:
-	* 	Bioinformatics Brown Bag (Wednesdays, 12-1pm ET, on Zoom)
+	* Bioinformatics Brown Bag (Wednesdays, 12-1pm ET, on Zoom)
 	* Email `si-hpc@si.edu` (monitored by Rebecca, Vanessa, Matt, and Mike)
 * CfA users:
 	* email Sylvain or sign up for his office hours
