@@ -113,7 +113,7 @@ After attending this workshop, we hope users come away with these skills:
 * Windows direct connect (onsite, remote desktop, VPN)
 * CfA (telework.si.edu, login.cfa.harvard.edu, SAO VPN)
 
-* If you don't have an SI VPN but would like to, there is a request form in the SI ServiceDesk: https://smithsonianprod.servicenowservices.com/si/?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992
+* If you don't have an SI VPN but would like to, there is a request form in the SI [ServiceDesk](https://servicedesk.si.edu): https://smithsonianprod.servicenowservices.com/si/?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992
 
 ---
 
