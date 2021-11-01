@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies & Build Presentation
         run: sudo npm install -g reveal-md puppeteer --unsafe-perm
       - name: Build presentation pdf slides
-        run: DEBUG=reveal-md reveal-md hydra_intro_slides.md --print hydra_intro_slides.pdf
+        run: DEBUG=reveal-md reveal-md hydra_intro_slides.md --theme solarized --print hydra_intro_slides.pdf
       - name: Publish pdf slides
         run: |
           git config user.name github-actions
