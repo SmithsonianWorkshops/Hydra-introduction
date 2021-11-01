@@ -9,8 +9,6 @@ Objectives:
 
 ## Logging In
 
-The way that you connect to Hydra and issue commands is through a command line terminal program.
-
 ### Usernames
 Your Hydra username is typically the same as your SI username (the portion of your email address before `@si.edu`).
 
@@ -24,19 +22,29 @@ Your Hydra password is independent of your Smithsonian network password.
 
 ### telework.si.edu
 
+We'll be using the [telework.si.edu](https://telework.si.edu) system to connect to Hydra. A direct command line connection...
+
 The [telework.si.edu](https://telework.si.edu) is available from inside the Smithsonian network as well as remotely, There is a web-based terminal program to access Hydra.
 
-After logging in, expand the "IT Tools" section choose "Hydra".
+After logging in, expand the "IT Tools" section and choose "Hydra".
 
 <img src="images/telework-hydra-icon.png" width=300px alt="Hydra icon on telework site">
 
 Click on one of the "SSH terminal" links to start the web terminal connection to one of the login nodes.
 
-<img src="images/web-terminal.png" width=400px alt="web based terminal options for hydra">
+<img src="images/web-terminal.png" width=500px alt="web based terminal options for hydra">
 
 At the `login:` prompt, enter your Hydra username and at the `password:` prompt, enter your Hydra password.
 
-### Windows
+### Direct ssh connections
+
+An alternative to the [telework.si.edu](https://telework.si.edu) web-based terminal is a direct ssh connection from you remote computer to Hydra. To use these methods you'll need to be using a computer located on the Smithsonian network or a remote computer with a VPN connection.
+
+- SI users seeking to request a VPN can do so with [this form](https://smithsonianprod.servicenowservices.com/si/?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992).
+- CfA users should consult with their HPC support staff on how to establish this conneciton.
+
+#### ssh for Windows
+
 
 For Windows users, we recommend using the ssh client that is built in to the Command prompt of recent Windows 10 versions. (The free program, [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), is an alternative option).
 
@@ -44,7 +52,7 @@ Open the command prompt from the Start menu (type "command" or "cmd" in the sear
 
 In the command prompt window start the hydra connection with: `ssh {user}@hydra-login01.si.edu`. If you get an alert about the authenticity of the host, type `yes`. Enter your Hydra password at the `Password:` prompt.
 
-### Mac
+### ssh for Mac
 
 If you are on a Mac, open the Terminal program which can be found in the Utilities folder inside the Applications folder (or type "terminal" in the popup Spotlight search).
 
@@ -85,42 +93,15 @@ You will also see a prompt that looks like this:
 [{user}@hydra-login01 ~]$ _
 ```
 
-By default, you are placed in your "home" directory when you first log in. You can see where you are at any point with the `pwd` command, which stands for "print working directory". Try entering it now.
+Your `/home` directory has a relatively small size limit, so you don't store data here. Your `/scratch` directory is where you should typically run your jobs from.
 
-```
-$ pwd
-/home/{user}
-```
-|Don't enter the `$` in these examples, that is showing the command prompt|
-|---|
-
-Another useful command for getting a feeling for the file system is `ls`, which is short for "list". It will list the files in your current working directory.
-
-```
-$ ls
-```
-
-Most commands Unix commands let you add extra *parameters* that give you more control over what you want the command to do. Let's enter the same `ls` command again, and add the `-l`, which stands for "long listing" that shows more information about the files.
-
-```
-$ ls -l
-```
-
-You can see the surprisingly large list of `ls` options in its manual page in the built-in help system `man`. Man pages are extensive and for a beginner be less helpful than Google-ing for the options you want.
-
-```
-$ man ls
-```
-
-**Use the arrow keys or space bar to scroll through the man page and enter `q` when you're done**
-
-Your `/home` directory has a relatively small size limit, so you don't store data here. Your `/scratch` directory is where you should run your jobs from.
-
-Let's move to the "/scratch" directory with the `cd` command, which stands for "change directory". Feel free to use the `pwd` and `ls` commands again to see what has changed.
+See https://confluence.si.edu/display/HPC/Disk+Space+and+Disk+Usage for more information about the storage configuration.
 
 ```
 $ cd /scratch/genomics/{user}
 ```
+
+TODO: directories for non-genomics users
 
 Now that we're in the correct location, it is best practice to create a separate directory for each "project" you are working on. You can make a new directory with the `mkdir` command.
 
@@ -136,7 +117,7 @@ $ cd hydra_workshop
 
 Now that we're in our project directory, it's also best practice to create an organizational structure so that we can come back in a few weeks and remember what we did. This structure is a good start, but feel free change based on your needs as you gain experience.
 
-We're going to create multiple directories in one command by listing them all. The `-p` option for `mkdir` is really useful, it creates the parent directory if it doesn't already exist. This automnatically create the `data` directory when we say we want `data/raw` and `data/results` created.
+We're going to create multiple directories in one command by listing them all. The `-p` option for `mkdir` is really useful, it creates the parent directory if it doesn't already exist. This automatically creates the `data` directory when we say we want `data/raw` and `data/results` created.
 
 ```
 $ mkdir -p jobs logs data/raw data/results
