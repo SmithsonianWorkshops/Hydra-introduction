@@ -1,5 +1,7 @@
 # Unix Command Line and Hydra training sessions
 
+Code of Conduct: https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html
+
 ## Unix Command Line Introduction
 - Software Carpentry "The Unix Shell": https://swcarpentry.github.io/shell-novice/
 - (Windows users) Web-based virtual machine for learning Unix commands: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SmithsonianWorkshops/binders/intro-shell?urlpath=lab)
