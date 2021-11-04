@@ -1,9 +1,7 @@
 # Running jobs on HPC scheduler
 
 Objectives:
-* Learn how to connect to Hydra remotely and from the Smithsonian network.
-* Learn some basic Unix commands for navigating the filesytem in Hydra.
-* Learn best practices for organizing your project directories.
+* Learn how to connect to Hydra remotely.
 * Learn how to submit a job to the HPC scheduler.
 * Learn how to transfer results to your local computer.
 
@@ -22,7 +20,7 @@ Your Hydra password is independent of your Smithsonian network password.
 
 ### telework.si.edu
 
-We'll be using the [telework.si.edu](https://telework.si.edu) system to connect to Hydra. A direct command line connection...
+We'll be using the [telework.si.edu](https://telework.si.edu) system to connect to Hydra. See below for information on a direct ssh connection which offers advantages over this method.
 
 The [telework.si.edu](https://telework.si.edu) is available from inside the Smithsonian network as well as remotely, There is a web-based terminal program to access Hydra.
 
@@ -41,10 +39,9 @@ At the `login:` prompt, enter your Hydra username and at the `password:` prompt,
 An alternative to the [telework.si.edu](https://telework.si.edu) web-based terminal is a direct ssh connection from you remote computer to Hydra. To use these methods you'll need to be using a computer located on the Smithsonian network or a remote computer with a VPN connection.
 
 - SI users seeking to request a VPN can do so with [this form](https://smithsonianprod.servicenowservices.com/si/?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992).
-- CfA users should consult with their HPC support staff on how to establish this conneciton.
+- CfA users should consult with their HPC support staff on how to establish this connection.
 
 #### ssh for Windows
-
 
 For Windows users, we recommend using the ssh client that is built in to the Command prompt of recent Windows 10 versions. (The free program, [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), is an alternative option).
 
@@ -87,13 +84,15 @@ A reset link will be emailed to your institutional email account.
 
 Now that we are successfully logged in, you will see a little blurb about recent Hydra news. Make sure you read this.
 
-You will also see a prompt that looks like this:
+You will also see a prompt that looks something like this:
 
 ```
 [{user}@hydra-login01 ~]$ _
 ```
 
-Your `/home` directory has a relatively small size limit, so you don't store data here. Your `/scratch` directory is where you should typically run your jobs from.
+Your `/home` directory has a relatively small size limit, so you don't store data here. There are several disks to run analyses from, we'll be using `/scratch`.
+
+There are subdirectories for different groups. Biologists use `/share/genomics`, NASM use `/share/nasm`, SAO use `/share/sao`
 
 See https://confluence.si.edu/display/HPC/Disk+Space+and+Disk+Usage for more information about the storage configuration.
 
@@ -101,7 +100,18 @@ See https://confluence.si.edu/display/HPC/Disk+Space+and+Disk+Usage for more inf
 $ cd /scratch/genomics/{user}
 ```
 
-TODO: directories for non-genomics users
+```
+$ cd /scratch/nasm/{user}
+```
+
+```
+$ cd /scratch/sao/{user}
+```
+
+| Let us know if you get an error and we'll help you find or create your `/scratch` directory |
+|---|
+
+
 
 Now that we're in the correct location, it is best practice to create a separate directory for each "project" you are working on. You can make a new directory with the `mkdir` command.
 
@@ -114,29 +124,6 @@ And now enter the new project directory by using the `cd` command again.
 ```
 $ cd hydra_workshop
 ```
-
-Now that we're in our project directory, it's also best practice to create an organizational structure so that we can come back in a few weeks and remember what we did. This structure is a good start, but feel free change based on your needs as you gain experience.
-
-We're going to create multiple directories in one command by listing them all. The `-p` option for `mkdir` is really useful, it creates the parent directory if it doesn't already exist. This automatically creates the `data` directory when we say we want `data/raw` and `data/results` created.
-
-```
-$ mkdir -p jobs logs data/raw data/results
-```
-
-Now that our scaffold is built, you can visualize it with the `tree` command.
-
-```
-$ tree
-.
-├── data
-│   ├── raw
-│   └── results
-├── jobs
-└── logs
-
-5 directories, 0 files
-```
-
 
 ## Modules
 
@@ -155,27 +142,27 @@ $ module avail
 
 This will output all modules installed on Hydra.
 
+This is also listed on a website: https://www.cfa.harvard.edu/~sylvain/hpc/module-avail.html
+
 You can see module-specific help for any module with the `module help` command. These are written as part of the Hydra installation process, and should not be mistaken for the official documentation for the software.
 
 ```
 $ module help bioinformatics/iqtree
 
------------Module Specific Help for /share/apps/modulefiles/bioinformatics/iqtree/1.6.12:
+-----------Module Specific Help for /share/apps/modulefiles/bioinformatics/iqtree/2.1.2:
 
+Purpose                                                                                                           
+-------                                                                                                           
+This module file defines the system paths for IQTREE 2.1.2                                                        
+The compiled binary that you can now call is:                                                                     
+iqtree2                                                                                                           
 
-Purpose
--------
-This module file defines the system paths for IQTREE 1.6.12
-The compiled binary that you can now call is:
-iqtree
-iqtree-mpi
-iqtree-mpi-hybrid
+Documentation                                                                                                     
+-------------                                                                                                     
+http://www.cibiv.at/software/iqtree/                                                                              
 
-Documentation
--------------
-http://www.cibiv.at/software/iqtree/
-
-<- Last updated: Fri Nov  1 07:54:22 EDT 2019 ->
+<- Last updated: Thu Feb  25 15:49:22 EST 2021 ->
+-------------------------------------------------------------------                                               
 ```
 
 Ok, now let's actually load IQ-TREE.
@@ -184,20 +171,15 @@ Ok, now let's actually load IQ-TREE.
 $ module load bioinformatics/iqtree
 ```
 
-Nothing happens, but let's run a quick command to show that we have IQ-TREE loaded properly.
+You should get a notification that the module was loaded along with another required module, but nothing else has changed.
+
+We'll run a quick command to show that we have IQ-TREE loaded properly.
 
 ```
-$ iqtree -h
-IQ-TREE multicore version 1.6.12 for Linux 64-bit built Aug 15 2019
-Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
-Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
-
-Usage: iqtree -s <alignment> [OPTIONS]
-
-GENERAL OPTIONS:
-  -? or -h             Print this help dialog
-  -version             Display version number
-  -s <alignment>       Input alignment in PHYLIP/FASTA/NEXUS/CLUSTAL/MSF format
+$ iqtree2
+IQ-TREE multicore version 2.1.2 COVID-edition for Linux 64-bit built Oct 22 2020                                  
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,                                                     
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.                                                
 ...
 ```
 
@@ -208,10 +190,10 @@ GENERAL OPTIONS:
 
 We're going to create an IQ-TREE job file to submit to be run on one of the compute nodes.
 
-First of all, let's copy a sample input file into our `data/raw` directory. We will use the `cp` command, which takes in 2 *arguments*: the file you want to copy, and then the new location.
+First of all, let's copy a sample input file into our directory. We will use the `cp` command, which takes in 2 *arguments*: the file you want to copy, and then the new location.
 
 ```
-$ cp /data/genomics/workshops/intro_hydra/exon_50per_taxa.phy data/raw/
+$ cp /data/genomics/workshops/intro_hydra/exon_50per_taxa.phy .
 ```
 
 *Best practice: use tab completion to automatically extend a directory or file name without manually typing the whole name, this also avoids typos.*
@@ -235,10 +217,10 @@ There is a link to this page on the page that lists Hydra's web-based tools.
 * *Job specific commands*:
 
 ```
-iqtree -s ../data/raw/exon_50per_taxa.phy \
+iqtree2 -s exon_50per_taxa.phy \
        -m GTR+F+R4 \
        -nt $NSLOTS \
-       -pre ../data/results/exon_50per_taxa
+       -pre exon_50per_taxa
 ```
 
 * *Job Name*: iqtree
@@ -260,7 +242,16 @@ Copy the link with the "Copy link" button.
 
 Change directories into the "jobs" directory.
 
-To download we need to first load the ffsend module and then download the file by pasting `ffdownload` and the copied url.
+## Transferring files
+
+The best way to transfer files depends on your connection to Hydra. A full description of file transfer options is available here: https://confluence.si.edu/display/HPC/Disk+Space+and+Disk+Usage#DiskSpaceandDiskUsage-HowToCopy
+
+- Telework: ffsend uses a free cloud file transfer service and [accompanying script](https://github.com/timvisee/ffsend) to move files. It works well for a small number of moderately sized files. On your workstation you can use the script or a website to upload files to the service and on Hydra you use the module `tools/ffsend` to download or upload files.
+- Windows or Mac directly connected to the Smithsonian network
+  - The `scp` command is a great utility for transferring files to and from Hydra.
+  - For a GUI program we recommend FileZilla, which you can download from [https://filezilla-project.org/download.php?show_all=1](https://filezilla-project.org/download.php?show_all=1)
+
+To transfer the job file to Hydra, we're going to show you how to use ffsend. We'll load the ffsend module and then download the file by pasting `ffdownload` and the copied url.
 
 Note for users of the telework interface on Windows: to paste the URL you have to right click on the Hydra web page to get a pop-up menu. Choose "Paste from browser" and the use control-v to paste the ffsend url into the pop-up window at the top of the page and then press OK.
 
@@ -295,13 +286,9 @@ If nothing appears here, then your job is finished, but you can't tell yet if it
 
 **Hint: if your job disappears from the `qstat` list in a few seconds it likely means it failed.**
 
- When `qstat` no longer shows your job, you can now `cd` into your `../data/results` directory to see if iqtree produced output files.
-
 **If your job finishes without producing the expected output files, your first instinct should be to check the log file.**
 
-By default the log file is located in the same location as where you submitted the job file, which is the `job` directory. You can later move the log file to the `logs` directory with `mv iqtree.log ../logs`
-
-Change into the jobs directory if you're not there already and view the log file
+You can view your log file while the job is running or after it completes:
 
 ```
 $ more iqtree.log
@@ -315,41 +302,27 @@ Note the job id that is listed in here on one of the first lines
 + Thu May 20 13:38:30 EDT 2021 job iqtree started in sThC.q with jobID=21884560
 ```
 
-You can now use the jobID to look at resources used during your run. This is useful for troubleshooting when memory limits are hit. We'll use `qacct+` a Hydra specific wrapper to the standard `qacct` program.
+When the job is running you can get more information about the job with the `qstat` command using the `-j` argument:
 
 ```
-$ module load tools/local
-$ qacct+ -j {job ID}
+qstat -j 21884560
+```
+
+When the job is complete, you can get a report on the completed job using the `qacct` or the Hydra-specific tool `qacct+` which uses the same information as `qacct`, but has more configurable output, it's very useful for troubleshooting when memory limits are hit.
+
+```
+$ qacct+ -j 21884560
 ```
 
 *Pay specific attention to the maxvmem line of the output. This shows the maximum amount of virtual memory that your job used. If this is significantly less than the amount you requested, make sure to adjust in future jobs.*
 
-## Transferring files
+To transfer the resulting treefile to your personal computer using ffsend use this command:
 
-The best way to transfer files depends on your connection to Hydra.
+```
+ffsend upload exon_50per_taxa.treefile
+```
 
-- Telework: The ffsend utility works well for small files.
-  - After loading the ffsend module, use the command `ffsend upload {filename}`
-- Windows or Mac directly connected to the Smithsonian network
-  - The `scp` command is a great utility for transferring files to and from Hydra.
-  - For a GUI program we recommend FileZilla, which you can download from [https://filezilla-project.org/download.php?show_all=1](https://filezilla-project.org/download.php?show_all=1)
-
-In the Quickconnect toolbar at the top of the window enter:
-
-* Host: hydra-login01.si.edu or hydra-login02.si.edu
-* Username: your Hydra username
-* Password: your Hydra password
-* Port: 22
-
-Press the "Quickconnect" button to start the connection.
-
-The files listed on the left side of the window are on your local computer, those on the right are on Hydra.
-
-Enter your `/scratch/genomics/{user}` filepath in the "Remote site" entry on the right side. You can than use the file tree on the right to navigate to your result files.
-
-Drag the file ending in ".treefile" to the left side in an appropriate directory on your local computer.
-
-Now, go to [https://icytree.org/](https://icytree.org/) in a web browser, and open up the ".treefile" file to view the tree.
+If you want to view the treefile, download it using the ffsend url and then go to [https://icytree.org/](https://icytree.org/) in a web browser, and open up the ".treefile" file to view the tree.
 
 ## Interactive queue
 
@@ -377,11 +350,43 @@ $ cd /scratch/genomics/{user}/hydra_workshop
 And now we can directly run the same commands that we listed out in our job file.
 
 ```
-module load bioinformatics/iqtree
+$ module load bioinformatics/iqtree
 ```
 
 And then the same iqtree command -- but changing the data paths, since we're in the main project directory now.
 
 ```
-iqtree -s ../data/raw/exon_50per_taxa.phy -m GTR+F+R4 -nt $NSLOTS -pre ../data/results/exon_50per_taxa
+$ iqtree -s exon_50per_taxa.phy -m GTR+F+R4 -nt $NSLOTS -pre exon_50per_taxa
+```
+
+When you're done with the interactive job, use `exit` to return to the login node.
+
+```
+$ exit
+```
+
+## Next steps
+
+### File organization
+
+It's best practice to create an organizational structure so that we can come back in a few weeks and remember what we did. This structure is a good start, but feel free change based on your needs as you gain experience.
+
+We're going to create multiple directories in one command by listing them all. The `-p` option for `mkdir` is really useful, it creates the parent directory if it doesn't already exist. This automatically creates the `data` directory when we say we want `data/raw` and `data/results` created.
+
+```
+$ mkdir -p jobs logs data/raw data/results
+```
+
+Now that our scaffold is built, you can visualize it with the `tree` command.
+
+```
+$ tree
+.
+├── data
+│   ├── raw
+│   └── results
+├── jobs
+└── logs
+
+5 directories, 0 files
 ```
