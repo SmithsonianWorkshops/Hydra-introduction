@@ -13,18 +13,18 @@
 
 ---
 
-# Code of conduct
-We are operating under the Carpentries [Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html).
+# Code of conduct 
+We are operating under the Carpentries [Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html). 
 
 If you feel that someone has violated this Code of Conduct, please email `si-hpc@si.edu`.
 
 ---
 
-# Introductions
+# Introductions 
 
 ---
 
-# Intended outcomes
+# Intended outcomes 
 After attending this workshop, we hope users come away with these skills:
 
 * How to successfully log in
@@ -43,41 +43,47 @@ After attending this workshop, we hope users come away with these skills:
 * Rebecca Dikow (OCIO Data Science Lab), Vanessa González (NMNH GGI), Matt Kweskin (NMNH LAB), and Mike Trizna (OCIO Data Science Lab) provide support for non-CfA users.
 
 * DJ Ding (OCIO) is the full-time Hydra system administrator.
-* Sylvain Korzennik (SAO) is the HPC Analyst and provides support for CfA users.
-
+ 
+* Sylvain Korzennik (SAO) is the HPC Analyst and provides support for CfA users (and is responsible for the cluster configuration).
+ 
 ---
 
-### Getting help
+### Getting help 
 * The [Wiki](https://confluence.si.edu/display/HPC/High+Performance+Computing) contains detailed documentation
 * Email `si-hpc-admin@si.edu` for system-level issues
-* For non-CfA users:
-	* Bioinformatics Brown Bag (Wednesdays, 12-1pm ET, on Zoom)
-	* Email `si-hpc@si.edu` (monitored by Rebecca, Vanessa, Matt, and Mike)
+* For non-CfA users: 
+	* 	Bioinformatics Brown Bag (Wednesdays, 12-1pm ET, on Zoom) 
+	* Email `si-hpc@si.edu` (monitored by Rebecca, Vanessa, Matt, and Mike) 
 * CfA users:
-	* email Sylvain or sign up for his office hours
+	* email [Sylvain](mailto:hpc@cfa.harvard.edu) or sign up for his [office hours](https://lweb.cfa.harvard.edu/cf/services/cluster/request-office-hours.html).
 
 
 ---
 
 ### Being a good Hydra citizen
-* We strive to provide support for users that is inclusive, welcoming, and helps you get your science done.
+* We strive to provide support for users that is inclusive, welcoming, and helps you get your science done. 
 
 * We request that users be respectful when asking for help. While we attempt to answer questions rapidly, user support is no one's full-time duties.
 
----
-
-### How is a cluster different than a single-user system?
-
-
-![](https://i.imgur.com/nf1YzbQ.jpg)
-
+* Hydra users agree to abide by its [usage policies](https://confluence.si.edu/display/HPC/Hydra+Policies).
 
 ---
 
 ### How is a cluster different than a single-user system?
-* Hydra has 90 compute nodes with between 20 and 128 CPUs each, for a total of 4,896 CPUs
 
-* Compute nodes have a range of 128GB to 2TB RAM each
+
+![](https://i.imgur.com/f1jtepz.png)
+
+
+
+---
+
+### How is a cluster different than a single-user system?
+* Hydra has 90 compute nodes with between 20 and 128 CPUs each, for a total of 4,896 CPUs.
+
+* Compute nodes have a range of 128GB to 2TB RAM each.
+
+* Two compute nodes have 2 GPUs each.
 
 
 ---
@@ -85,24 +91,32 @@ After attending this workshop, we hope users come away with these skills:
 
 ### Important Takeaways
 
-* Users never need to connect to the Head Node
+* Users never need to connect to the Head Node.
 
-* Log in to either `hydra-login01` or `hydra-login02`
+* Log in to either `hydra-login01` or `hydra-login02`.
 
-* Do not run commands that use substantial CPU on the login nodes, that's what the compute nodes are for
+* Do not run commands that use substantial CPU on the login nodes, that's what the compute nodes are for.
+
+* "*Misuse*" of any resources affect the other users (shared resource).
 
 
 ---
 
-### Disk Storage
+### Disk Storage 
 
-* When you log in, you go to your `/home` directory
+* When you log in, you go to your `/home` directory.
 
-* `/home` is for your own installed programs and scripts, not for data storage
+* `/home` is for your own installed programs and scripts, not for data storage.
 
-* Data belong on `/pool` or `/scratch` and users should run their jobs from here
+---
 
-* `/pool` and `/scratch` are scrubbed - files older than 180 days are removed
+### Disk Storage 
+
+* Data (large files) belong on `/pool` or `/scratch` and users should run their jobs from here.
+
+* `/pool` and `/scratch` are scrubbed - files older than 180 days are removed.
+
+* `/data` offers some unscrubbed storage for small files (final results, configuration files, etc.)
 
 ---
 
@@ -111,19 +125,26 @@ After attending this workshop, we hope users come away with these skills:
 * telework.si.edu (web terminal)
 * Mac direct connect (onsite or VPN)
 * Windows direct connect (onsite, remote desktop, VPN)
-* CfA (telework.si.edu, login.cfa.harvard.edu, SAO VPN)
-
-* If you don't have an SI VPN but would like to, there is a request form in the SI [ServiceDesk](https://servicedesk.si.edu): https://smithsonianprod.servicenowservices.com/si/?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992
+* CfA (VPN, `login.cfa.harvard.edu`, and *trusted* computers: CF/HEA-managed desktops)
+* If you don't have an SI VPN but would like to, there is a request form in the SI [ServiceDesk](https://servicedesk.si.edu)
 
 ---
 
 ### The job scheduler - UGE
 
-* We use UGE (Univa Grid Engine) to schedule resources on Hydra
+* We use UGE (Univa Grid Engine) to schedule resources on Hydra.
 
-* When you submit a job, UGE adds it to the queue and sends it to a compute node with the resources you request
+* When you submit a job, UGE adds it to the queue and sends it to a compute
+  node with the resources you requested when they become available.
 
-* Each job is assigned a JOB ID, which you can use to check on progress and look at how it used resources when it is complete
+---
+
+### The job scheduler - UGE
+
+* Each job is assigned a JOB ID, which you can use to check on progress and
+  look at how it used resources when it is complete.
+
+* UGE limits how many resources each user can use concurrently.
 
 ---
 
@@ -142,7 +163,7 @@ Hydra has different queues to accommodate different resource requests:
 * High CPU queues: `sThC.q`, `mThC.q`, `lThC.q`, `uThC.q`
 * High Memory queues: `sThM.q`, `mThM.q`, `lThM.q`, `uThM.q`
 
-There are other more specialized queues, check the wiki for more information
+There are other more specialized queues, check the wiki for more information.
 
 ---
 
@@ -151,15 +172,22 @@ There are other more specialized queues, check the wiki for more information
 * Some software uses **threaded** parallelization, where the job is divided across CPUs on a single compute node
 * Some software can be compiled to use **MPI** parallelization, where the job is divided across multiple compute nodes
 
+---
 
-Look at software documentation to check which kind of parallelization, if any, your software uses
+### Parallelization
+
+Look at software documentation to check which kind of parallelization, if any, your software uses and at the [Wiki](https://confluence.si.edu/display/HPC/High+Performance+Computing) for how to request the needed resources. 
 
 ---
 
 ### Parallelization hints
-* Some (bioinformatics) software will grab all the CPUs on a compute node unless you tell it otherwise
+* Some (bioinformatics) software will grab all the CPUs on a compute node unless you tell it otherwise (*not appropriate on a shared machine*).
 
-* Best practice is to use `$NSLOTS` in place of a number of threads in your command. We will demo this in a bit
+---
+
+### Parallelization hints
+
+* Best practice is to use `$NSLOTS` in place of a number of threads in your command. We will demo this in a bit.
 
 ---
 
@@ -169,7 +197,18 @@ Look at software documentation to check which kind of parallelization, if any, y
     * Running a job that is inefficient (using <30% of the requested CPU resources), or
     * Running a high-memory job that is using much less than the requested amount of RAM,
 
-*will receive an automated warning email. We request that you monitor these jobs closely and contact us if you receive repeated warnings*
+will receive an automated warning email. 
+
+*We request that you monitor these jobs closely and contact us if you receive repeated warnings*
+
+---
+
+### Warnings
+
+* When the cluster usage is high, some ineeficient jobs will get killed (*fair use* policy).
+
+* Important to receive and read these automatic emails from Hydra (see usage
+  policy).
 
 ---
 
