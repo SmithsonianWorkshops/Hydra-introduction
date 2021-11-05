@@ -1,14 +1,15 @@
-# Running jobs on HPC scheduler
+# Running jobs on the Hydra scheduler
 
 Objectives:
 * Learn how to connect to Hydra remotely.
+* Learn how to find programs installed on the cluster.
 * Learn how to submit a job to the HPC scheduler.
 * Learn how to transfer results to your local computer.
 
 ## Logging In
 
 ### Usernames
-Your Hydra username is typically the same as your SI username (the portion of your email address before `@si.edu`).
+For Smithsonian users your Hydra username is the same as your SI username (the portion of your email address before `@si.edu`). For SAO users, your username is typically your first initial then your last name.
 
 | When you see `{user}` in this tutorial, replace that with your Hydra username!|
 |---|
@@ -34,14 +35,14 @@ Click on one of the "SSH terminal" links to start the web terminal connection to
 
 At the `login:` prompt, enter your Hydra username and at the `password:` prompt, enter your Hydra password.
 
-### Direct ssh connections
+### Direct `ssh` connections
 
 An alternative to the [telework.si.edu](https://telework.si.edu) web-based terminal is a direct ssh connection from you remote computer to Hydra. To use these methods you'll need to be using a computer located on the Smithsonian network or a remote computer with a VPN connection.
 
 - SI users seeking to request a VPN can do so with [this form](https://smithsonianprod.servicenowservices.com/si/?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992).
 - CfA users should consult with their HPC support staff on how to establish this connection.
 
-#### ssh for Windows
+#### `ssh` for Windows
 
 For Windows users, we recommend using the ssh client that is built in to the Command prompt of recent Windows 10 versions. (The free program, [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), is an alternative option).
 
@@ -49,7 +50,7 @@ Open the command prompt from the Start menu (type "command" or "cmd" in the sear
 
 In the command prompt window start the hydra connection with: `ssh {user}@hydra-login01.si.edu`. If you get an alert about the authenticity of the host, type `yes`. Enter your Hydra password at the `Password:` prompt.
 
-### ssh for Mac
+### `ssh` for Mac
 
 If you are on a Mac, open the Terminal program which can be found in the Utilities folder inside the Applications folder (or type "terminal" in the popup Spotlight search).
 
@@ -143,6 +144,12 @@ $ module avail
 This will output all modules installed on Hydra.
 
 This is also listed on a website: https://www.cfa.harvard.edu/~sylvain/hpc/module-avail.html
+
+You can list all versions of a module with this (Note: tab-completion works for module name):
+
+```
+$ module avail bioinformatics/iqtree
+```
 
 You can see module-specific help for any module with the `module help` command. These are written as part of the Hydra installation process, and should not be mistaken for the official documentation for the software.
 
