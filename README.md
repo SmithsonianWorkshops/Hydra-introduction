@@ -10,7 +10,7 @@ Code of Conduct: https://docs.carpentries.org/topic_folders/policies/code-of-con
 
 ## Hydra introduction
 ### Material for the session
-- Presentation slides: [hydra_intro_slides.pdf](hydra_intro_slides.pdf)
+- Presentation slides (in Markdown format): [hydra_intro_slides.md](hydra_intro_slides.md)
 - Hands-on section: [hydra_intro.md](hydra_intro.md)
 
 ### Useful public Hydra links
