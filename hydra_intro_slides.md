@@ -24,6 +24,7 @@ After attending this workshop, we hope users come away with these skills:
 ---
 
 # Hydra (SI/HPC)
+![](images/Hydra-data-center.png)
 
 ---
 
