@@ -4,7 +4,7 @@ Code of Conduct: https://docs.carpentries.org/topic_folders/policies/code-of-con
 
 ## Unix Command Line Introduction
 - Software Carpentry "The Unix Shell": https://swcarpentry.github.io/shell-novice/
-- (Windows users) Web-based virtual machine for learning Unix commands: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SmithsonianWorkshops/binders/intro-shell?urlpath=lab)
+- (Windows users) Web-based virtual machine for learning Unix commands: <a href="https://mybinder.org/v2/gh/SmithsonianWorkshops/binders/intro-shell?urlpath=lab" target="_blank"><img src=https://mybinder.org/badge_logo.svg></a>
 - (Mac/Linux users) Download [shell-lesson-data.zip](https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip), unzip and move the `shell-lesson-data` directory to your Desktop.
 
 
