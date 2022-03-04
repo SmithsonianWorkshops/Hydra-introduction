@@ -363,7 +363,7 @@ $ module load bioinformatics/iqtree
 And then the same iqtree command -- but changing the data paths, since we're in the main project directory now.
 
 ```
-$ iqtree -s exon_50per_taxa.phy -m GTR+F+R4 -nt $NSLOTS -pre exon_50per_taxa
+$ iqtree2 -s exon_50per_taxa.phy -m GTR+F+R4 -nt $NSLOTS -pre exon_50per_taxa -redo
 ```
 
 When you're done with the interactive job, use `exit` to return to the login node.
