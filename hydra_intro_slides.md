@@ -195,7 +195,7 @@ will receive an automated warning email.
 
 ### Warnings
 
-* When the cluster usage is high, some ineeficient jobs will get killed (*fair use* policy).
+* When the cluster usage is high, some inefficient jobs will get killed (*fair use* policy).
 
 * Important to receive and read these automatic emails from Hydra (see usage
   policy).
