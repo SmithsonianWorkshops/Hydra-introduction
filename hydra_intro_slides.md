@@ -23,11 +23,6 @@ After attending this workshop, we hope users come away with these skills:
 
 ---
 
-# Hydra (SI/HPC)
-![](images/hydra-overview.jpg)
-
----
-
 ### People
 
 * Rebecca Dikow (OCIO Data Science Lab), Vanessa González (NMNH GGI), Matt Kweskin (NMNH LAB), and Mike Trizna (OCIO Data Science Lab) provide support for non-CfA users.
@@ -56,6 +51,11 @@ After attending this workshop, we hope users come away with these skills:
 * We request that users be respectful when asking for help. While we attempt to answer questions rapidly, user support is no one's full-time duties.
 
 * Hydra users agree to abide by its [usage policies](https://confluence.si.edu/display/HPC/Hydra+Policies).
+
+---
+
+# Hydra (SI/HPC)
+![](images/hydra-overview.jpg)
 
 ---
 
