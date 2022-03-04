@@ -143,7 +143,7 @@ $ module avail
 
 This will output all modules installed on Hydra.
 
-This is also listed on a website: https://www.cfa.harvard.edu/~sylvain/hpc/module-avail.html
+This is also listed on a website: https://www.cfa.harvard.edu/~sylvain/hydra/module-avail.html
 
 You can list all versions of a module with this (Note: tab-completion works for module name):
 
