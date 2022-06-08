@@ -16,4 +16,4 @@ Code of Conduct: https://docs.carpentries.org/topic_folders/policies/code-of-con
 ### Useful public Hydra links
 - Wiki: https://confluence.si.edu/display/HPC/High+Performance+Computing
 - Cluster status: https://lweb.cfa.harvard.edu/~sylvain/hydra/
-- Current modules: https://www.cfa.harvard.edu/~sylvain/hpc/module-avail.html
+- Current modules: [https://lweb.cfa.harvard.edu/~sylvain/hydra/module-avail.html](https://lweb.cfa.harvard.edu/~sylvain/hydra/module-avail.html)
