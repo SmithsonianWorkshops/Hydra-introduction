@@ -25,7 +25,7 @@ After attending this workshop, we hope users come away with these skills:
 
 ### People
 
-* Rebecca Dikow (OCIO Data Science Lab), Vanessa González (NMNH GGI), Matt Kweskin (NMNH LAB), and Mike Trizna (OCIO Data Science Lab) provide support for non-CfA users.
+* Rebecca Dikow (OCIO Data Science Lab), Vanessa González (NMNH ADCS Office), Matt Kweskin (NMNH L.A.B.), and Mike Trizna (OCIO Data Science Lab) provide support for non-CfA users.
 
 * DJ Ding (OCIO) is the full-time Hydra system administrator.
  
