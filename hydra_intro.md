@@ -229,15 +229,15 @@ To setup FileZilla to connect to Hydra, enter these settings in the top bar:
 
 Then press the `Quickconnect` button.
 
-TODO: Add screenshot
+<img src="images/filezilla-login.png" alt="FileZilla settings for Hydra" width=500px>
 
 On your first login, you'll be prompted about an "Unknown host key." Check "Always trust this host, add this key to the cache" and click "OK"
 
-TODO: Add screenshot
+<img src="images/filezilla-confirm.png" alt="FileZilla- confirm initial connection" width=400px>
 
 The FileZilla user interface is setup that the local system (your workstation) is listed on the left and the remote system (Hydra) is listed on the right. You navigate to the local directory on the left side and the remote on the right and then transfer files by double-clicking or dragging.
 
-TODO: Add screenshot
+<img src="images/filezilla-ui.png" alt="FileZilla- user interface for file transfers overview" width=400px>
 
 Use this method to transfer `Exon_50per_taxa.phylip.txt` to your /scratch/genomics/{user}/hydra_workshop directory
 
@@ -263,7 +263,12 @@ Confirm the file has transferred by using the `less` command
 $ less Exon_50per_taxa.phylip.txt
 ```
 
-TODO: `mv Exon_50per_taxa.phylip.txt exon_50per_taxa.phy`
+Next we'll rename this downloaded file. This isn't strictly necessary, but it will allow us use the standard file extension for Phylip files (`.phy`) and we'll get to use the `mv` command.
+
+```
+$ mv Exon_50per_taxa.phylip.txt exon_50per_taxa.phy
+$ ls
+```
 
 *Best practice: use tab completion to automatically extend a directory or file name without manually typing the whole name, this also avoids typos.*
 
