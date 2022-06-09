@@ -3,13 +3,13 @@
 Objectives:
 * Learn how to connect to Hydra remotely.
 * Learn how to find programs installed on the cluster.
-* Learn how to submit a job to the HPC scheduler.
+* Learn how to create and submit a job to the HPC scheduler.
 * Learn how to transfer results to your local computer.
 
 ## Logging In
 
 ### Usernames
-For Smithsonian users your Hydra username is the same as your SI username (the portion of your email address before `@si.edu`). For SAO users, your username is typically your first initial then your last name.
+For Smithsonian users your Hydra username is the same as your SI username (the portion of your email address before `@si.edu`), all in lowercase. For SAO users, your username is typically your first initial then your last name.
 
 | When you see `{user}` in this tutorial, replace that with your Hydra username!|
 |---|
@@ -21,9 +21,7 @@ Your Hydra password is independent of your Smithsonian network password.
 
 ### telework.si.edu
 
-We'll be using the [telework.si.edu](https://telework.si.edu) system to connect to Hydra. See below for information on a direct ssh connection which offers advantages over this method.
-
-The [telework.si.edu](https://telework.si.edu) is available from inside the Smithsonian network as well as remotely, There is a web-based terminal program to access Hydra.
+The [telework.si.edu](https://telework.si.edu) system allows any user with a Smithsonian user account to remotely connect to Hydra.  It's available from inside the Smithsonian network as well as remotely. There is a web-based terminal program to access Hydra.
 
 After logging in, expand the "IT Tools" section and choose "Hydra".
 
@@ -37,7 +35,7 @@ At the `login:` prompt, enter your Hydra username and at the `password:` prompt,
 
 ### Direct `ssh` connections
 
-An alternative to the [telework.si.edu](https://telework.si.edu) web-based terminal is a direct ssh connection from you remote computer to Hydra. To use these methods you'll need to be using a computer located on the Smithsonian network or a remote computer with a VPN connection.
+When possible, a direct ssh connection from your workstation to Hydra is preferred to using the web-based Telework interface. You'll need to be using a computer located on the Smithsonian network or a remote computer with a VPN connection.
 
 - SI users seeking to request a VPN can do so with [this form](https://smithsonianprod.servicenowservices.com/si/?id=sc_cat_item&sys_id=cd8bcf38dbaec810faac7c031f961992).
 - CfA users should consult with their HPC support staff on how to establish this connection.
@@ -63,7 +61,7 @@ $ ssh {user}@hydra-login01.si.edu
 
 ### Resetting your password
 
-Hydra has a self-service password reset system if your password expires or is forgotten.
+Hydra has a self-service password reset system that you use to set your initial password and other times you need to reset your password (e.g. forgotten or expired password).
 
 There is a link to this page on the page that lists Hydra's web-based tools.
 - Telework: go to the Hydra option in "IT Tools" on the Telework site and choose "Password Self Help"
@@ -156,20 +154,23 @@ You can see module-specific help for any module with the `module help` command. 
 ```
 $ module help bioinformatics/iqtree
 
------------Module Specific Help for /share/apps/modulefiles/bioinformatics/iqtree/2.1.2:
+-------------------------------------------------------------------
+Module Specific Help for /share/apps/modulefiles/bioinformatics/iqtree/2.1.3:
 
-Purpose                                                                                                           
--------                                                                                                           
-This module file defines the system paths for IQTREE 2.1.2                                                        
-The compiled binary that you can now call is:                                                                     
-iqtree2                                                                                                           
 
-Documentation                                                                                                     
--------------                                                                                                     
-http://www.cibiv.at/software/iqtree/                                                                              
+Purpose
+-------
+This module file defines the system paths for IQTREE 2.1.3
+The compiled binary that you can now call is:
+iqtree2
 
-<- Last updated: Thu Feb  25 15:49:22 EST 2021 ->
--------------------------------------------------------------------                                               
+Documentation
+-------------
+http://www.cibiv.at/software/iqtree/
+
+<- Last updated: Tue Nov 30 09:41:39 EST 2021 ->
+
+-------------------------------------------------------------------
 ```
 
 Ok, now let's actually load IQ-TREE.
@@ -184,9 +185,9 @@ We'll run a quick command to show that we have IQ-TREE loaded properly.
 
 ```
 $ iqtree2
-IQ-TREE multicore version 2.1.2 COVID-edition for Linux 64-bit built Oct 22 2020                                  
-Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,                                                     
-Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.                                                
+IQ-TREE multicore version 2.1.3 COVID-edition for Linux 64-bit built Apr 21 2021
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
 ...
 ```
 
@@ -195,17 +196,78 @@ Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
 
 ## Submitting a job
 
-We're going to create an IQ-TREE job file to submit to be run on one of the compute nodes.
+We're going to create an [IQ-TREE](http://www.iqtree.org/) (a phylogenetics application) job file to submit to be run on one of the compute nodes.
 
-First of all, let's copy a sample input file into our directory. We will use the `cp` command, which takes in 2 *arguments*: the file you want to copy, and then the new location.
+### Transferring files
+
+Critical to using Hydra is being able to transfer files to and from the system. You'll typically need to transfer to Hydra your input files and then copy back output for backing up and reporting.
+
+In this workshop we'll be running IQ-TREE on this [sequence alignment](https://doi.org/10.17632/ty5h3y9rwx.1) from [Wood et al.’s 2018 spider UCE paper](https://doi.org/10.1016/j.ympev.2018.06.038) generated at NMNH.
+
+Go to the [sequence alignment](https://doi.org/10.17632/ty5h3y9rwx.1) page and download "Exon_50per_taxa.phylip.txt" to your workstation.
+
+The best way to transfer files depends on your connection to Hydra. A full description of file transfer options is available here: https://confluence.si.edu/display/HPC/Disk+Space+and+Disk+Usage#DiskSpaceandDiskUsage-HowToCopy
+
+- Telework: ffsend uses a free cloud file transfer service and [accompanying script](https://github.com/timvisee/ffsend) to move files. It works well for a small number of moderately sized files. On your workstation you can use the script or a website to upload files to the service and on Hydra you use the module `tools/ffsend` to download or upload files.
+- Windows or Mac directly connected to the Smithsonian network
+  - The `scp` command is a great utility for transferring files to and from Hydra.
+  - For a GUI program we recommend FileZilla, which you can download from [https://filezilla-project.org/download.php?show_all=1](https://filezilla-project.org/download.php?show_all=1)
+
+#### FileZilla (direct connection to Hydra)
+
+Using FileZilla is a convenient GUI based file transfer program that will work on computers running on the SI network or on a computer connected via VPN.
+
+If your computer doesn't have FileZilla installed, download it [https://filezilla-project.org/download.php?show_all=1](https://filezilla-project.org/download.php?show_all=1)
+
+Hint: you can run the program even if you don't have admin rights to the computer. You can run the Mac version without transferring to the Applications folder. On Windows, download and extract the version that ends with `.zip` instead of `setup.exe` (the `64bit x86` version will work on most Windows systems.)
+
+To setup FileZilla to connect to Hydra, enter these settings in the top bar:
+- Host: hydra-login02
+- Username: Your Hydra username
+- Password: Your Hydra pasword
+- Port: `22` (this defines the type of transfer protocol being used, scp/sftp in this case)
+
+Then press the `Quickconnect` button.
+
+TODO: Add screenshot
+
+On your first login, you'll be prompted about an "Unknown host key." Check "Always trust this host, add this key to the cache" and click "OK"
+
+TODO: Add screenshot
+
+The FileZilla user interface is setup that the local system (your workstation) is listed on the left and the remote system (Hydra) is listed on the right. You navigate to the local directory on the left side and the remote on the right and then transfer files by double-clicking or dragging.
+
+TODO: Add screenshot
+
+Use this method to transfer `Exon_50per_taxa.phylip.txt` to your /scratch/genomics/{user}/hydra_workshop directory
+
+#### ffsend (Telework connection to Hydra)
+
+To transfer files to Hydra, we're going to show you how to use ffsend, which uploads your files to a cloud service and returns a URL you can download the file from on Hydra.
+
+Open the https://send.vis.ee website and upload your file.
+Copy the link with the "Copy link" button.
+
+Next, we'll load the ffsend module and then download the file by pasting `ffdownload` and the copied url.
+
+Note for users of the telework interface on Windows: to paste the URL you have to right click on the Hydra web page to get a pop-up menu. Choose "Paste from browser" and the use control-v to paste the ffsend url into the pop-up window at the top of the page and then press OK.
 
 ```
-$ cp /data/genomics/workshops/intro_hydra/exon_50per_taxa.phy .
+$ module load tools/ffsend
+$ ffdownload https://send.vis.ee/download/id/#id
 ```
+
+Confirm the file has transferred by using the `less` command
+
+```
+$ less Exon_50per_taxa.phylip.txt
+```
+
+TODO: `mv Exon_50per_taxa.phylip.txt exon_50per_taxa.phy`
 
 *Best practice: use tab completion to automatically extend a directory or file name without manually typing the whole name, this also avoids typos.*
 
-This [sequence alignment](https://doi.org/10.17632/ty5h3y9rwx.1) is from [Wood et al.’s 2018 spider UCE paper](https://doi.org/10.1016/j.ympev.2018.06.038).
+### Creation of job submission file
 
 Now that the input file is in place, we'll need to generate a job submission file.
 
@@ -218,14 +280,13 @@ There is a link to this page on the page that lists Hydra's web-based tools.
 * *CPU time*: short
 * *Memory*: 4 GB
 * *Type of PE*: multi-thread
-* *Number of CPUs*: 2
+* *Number of CPUs*: 4
 * *Select the job's shell*: sh
 * *Select which modules to add*: bioinformatics/iqtree
 * *Job specific commands*:
 
 ```
 iqtree2 -s exon_50per_taxa.phy \
-       -m GTR+F+R4 \
        -nt $NSLOTS \
        -pre exon_50per_taxa
 ```
@@ -242,38 +303,51 @@ This will generate the contents of your "job file" at the bottom. Click on the "
 
 By default, the QSub Generator site will export this job file with a filename of "qsub.job", but it can be easy to lose track of several different versions of the same name ("Did I set up that analysis in qsub.job(54) or qsub.job(27)?"). Let's use the same job name from our job script, and rename the file to "iqtree.job".
 
-Now we need to get this into a file on Hydra. We'll use the utility ffsend hosted on the site https://send.vis.ee which uploads your files to a cloud service and returns a URL you can download the file from on Hydra.
+Now we need to transfer this job file to on Hydra using FileZilla or ffsend (https://send.vis.ee).
 
-Open the https://send.vis.ee website and upload your file.
-Copy the link with the "Copy link" button.
+The file should go in to your `/scratch/genomics/{user}/hydra_workshop/` directory.
 
-Change directories into the "jobs" directory.
-
-## Transferring files
-
-The best way to transfer files depends on your connection to Hydra. A full description of file transfer options is available here: https://confluence.si.edu/display/HPC/Disk+Space+and+Disk+Usage#DiskSpaceandDiskUsage-HowToCopy
-
-- Telework: ffsend uses a free cloud file transfer service and [accompanying script](https://github.com/timvisee/ffsend) to move files. It works well for a small number of moderately sized files. On your workstation you can use the script or a website to upload files to the service and on Hydra you use the module `tools/ffsend` to download or upload files.
-- Windows or Mac directly connected to the Smithsonian network
-  - The `scp` command is a great utility for transferring files to and from Hydra.
-  - For a GUI program we recommend FileZilla, which you can download from [https://filezilla-project.org/download.php?show_all=1](https://filezilla-project.org/download.php?show_all=1)
-
-To transfer the job file to Hydra, we're going to show you how to use ffsend. We'll load the ffsend module and then download the file by pasting `ffdownload` and the copied url.
-
-Note for users of the telework interface on Windows: to paste the URL you have to right click on the Hydra web page to get a pop-up menu. Choose "Paste from browser" and the use control-v to paste the ffsend url into the pop-up window at the top of the page and then press OK.
-
-```
-$ module load tools/ffsend
-$ ffdownload https://send.vis.ee/download/id/#id
-```
-
-Confirm the file is as expected by showing its contents with the `cat` command
+Confirm the file looks ok by using `cat`
 
 ```
 $ cat iqtree.job
 ```
 
-You're finally ready to submit your job to the compute nodes, using the `qsub` command. ("q", short for "queue" and "sub" for "submit")
+#### Editing text files on Hydra
+
+A common need is to make edits to a text file that resides on Hydra. There are several command-line based text editors you can use. Popular ones are `vi`, `emacs`, and `nano`. We'll use `nano` which is commonly considered the best choice for beginners.
+
+Let's edit the job file to specify which version of IQ-TREE to use. Currently the module used is `bioinformatics/iqtree`. Since the version is not specified, the default version will be used, which may not be what you want.
+
+You can view the available versions of iqtree with `module avail bioinformatics/iqtree`
+
+Let's specify `bioinformatics/iqtree/2.1.3` which is currently the default, but that may change in future software updates to Hydra.
+
+Edit the job file with: `nano iqtree.job`
+
+Add `/2.1.3` to the end of the line with `module load...`
+
+Use the arrow keys (sorry, the mouse doesn't work with the command line) to move the cursor and then add the additional text.
+
+The line should now look like this:
+
+```
+module load bioinformatics/iqtree/2.1.3
+```
+
+To save the changes, use `control+o` for "WriteOut" which is the nano way of saying "Save."
+
+When prompted for the file name, keep it `iqtree.job`
+
+```
+File Name to Write: iqtree.job
+```
+
+Now you can close the editor with `control+x`
+
+### Submitting your job
+
+You're now ready to submit your job to the compute nodes, using the `qsub` command. ("q", short for "queue" and "sub" for "submit")
 
 ```
 $ qsub iqtree.job
