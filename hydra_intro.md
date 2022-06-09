@@ -6,6 +6,9 @@ Objectives:
 * Learn how to create and submit a job to the HPC scheduler.
 * Learn how to transfer results to your local computer.
 
+Not covered:
+* The specific settings for running the particular command line analysis program you will need for your work. We are available during our Brown Bags to offer advice on these details.
+
 ## Logging In
 
 ### Usernames
@@ -377,7 +380,7 @@ If nothing appears here, then your job is finished, but you can't tell yet if it
 You can view your log file while the job is running or after it completes:
 
 ```
-$ more iqtree.log
+$ less iqtree.log
 ```
 
 *Use the space bar to page through the file.*
