@@ -209,6 +209,13 @@ In this workshop we'll be running IQ-TREE on this [sequence alignment](https://d
 
 Go to the [sequence alignment](https://doi.org/10.17632/ty5h3y9rwx.1) page and download "Exon_50per_taxa.phylip.txt" to your workstation.
 
+You can also download this file directly to Hydra using the command line program `wget`. This saves a step in transfering the file two time.
+
+```
+$ wget https://md-datasets-cache-zipfiles-prod.s3.eu-west-1.amazonaws.com/ty5h3y9rwx-1.zip
+$ unzip ty5h3y9rwx-1.zip
+```
+
 The best way to transfer files depends on your connection to Hydra. A full description of file transfer options is available here: https://confluence.si.edu/display/HPC/Disk+Space+and+Disk+Usage#DiskSpaceandDiskUsage-HowToCopy
 
 - Telework: ffsend uses a free cloud file transfer service and [accompanying script](https://github.com/timvisee/ffsend) to move files. It works well for a small number of moderately sized files. On your workstation you can use the script or a website to upload files to the service and on Hydra you use the module `tools/ffsend` to download or upload files.
