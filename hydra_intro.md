@@ -273,15 +273,6 @@ Confirm the file has transferred by using the `less` command
 $ less Exon_50per_taxa.phylip.txt
 ```
 
-Next we'll rename this downloaded file. This isn't strictly necessary, but it will allow us use the standard file extension for Phylip files (`.phy`) and we'll get to use the `mv` command.
-
-```
-$ mv Exon_50per_taxa.phylip.txt exon_50per_taxa.phy
-$ ls
-```
-
-*Best practice: use tab completion to automatically extend a directory or file name without manually typing the whole name, this also avoids typos.*
-
 ### Creation of job submission file
 
 Now that the input file is in place, we'll need to generate a job submission file.
@@ -301,7 +292,7 @@ There is a link to this page on the page that lists Hydra's web-based tools.
 * *Job specific commands*:
 
 ```
-iqtree2 -s exon_50per_taxa.phy \
+iqtree2 -s Exon_50per_taxa.phylip.txt \
        -nt $NSLOTS \
        -pre exon_50per_taxa
 ```
