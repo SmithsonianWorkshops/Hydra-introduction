@@ -68,7 +68,7 @@ Hydra has a self-service password reset system that you use to set your initial 
 
 There is a link to this page on the page that lists Hydra's web-based tools.
 - Telework: go to the Hydra option in "IT Tools" on the Telework site and choose "Password Self Help"
-- On-site/VPN: go to https://hydra-adm01.si.edu/
+- On-site/VPN: go to https://galaxy.si.edu/
 
 There are two pages in the Self Help system. The initial one is to change your password (password changes are required every 180 days).
 
@@ -290,7 +290,7 @@ We will be using the Hydra QSub Generation Utility to create this file.
 
 There is a link to this page on the page that lists Hydra's web-based tools.
 - Telework: open the Hydra option in "IT Tools" on the Telework site
-- On-site/VPN: go to https://hydra-adm01.si.edu/
+- On-site/VPN: go to https://galaxy.si.edu/
 
 * *CPU time*: short
 * *Memory*: 4 GB
