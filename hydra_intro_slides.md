@@ -3,6 +3,7 @@
 ---
 
 # Code of conduct 
+
 We are operating under the Carpentries [Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html). 
 
 If you feel that someone has violated this Code of Conduct, please email `si-hpc@si.edu`.
@@ -14,6 +15,7 @@ If you feel that someone has violated this Code of Conduct, please email `si-hpc
 ---
 
 # Intended outcomes 
+
 After attending this workshop, we hope users come away with these skills:
 
 * How to successfully log in
@@ -25,7 +27,7 @@ After attending this workshop, we hope users come away with these skills:
 
 ### People
 
-* Rebecca Dikow (OCIO Data Science Lab), Vanessa González (NMNH ADCS Office), Matt Kweskin (NMNH L.A.B.), and Mike Trizna (OCIO Data Science Lab) provide support for non-CfA users.
+* Mike Trizna (OCIO Data Science Lab), Alex White (OCIO Data Science Lab), Vanessa González (NMNH ADCS Office), Matt Kweskin (NMNH L.A.B.), and  Kenneth Macdonald (Tripp) (NMNH L.A.B.) provide support for non-CfA users.
 
 * DJ Ding (OCIO) is the full-time Hydra system administrator.
  
@@ -34,11 +36,12 @@ After attending this workshop, we hope users come away with these skills:
 ---
 
 ### Getting help 
+
 * The [Wiki](https://confluence.si.edu/display/HPC/High+Performance+Computing) contains detailed documentation
 * Email `si-hpc-admin@si.edu` for system-level issues
 * For non-CfA users: 
-	* 	Bioinformatics Brown Bag (Thursdays, 1-2pm ET, on Zoom) 
-	* Email `si-hpc@si.edu` (monitored by Rebecca, Vanessa, Matt, and Mike) 
+	* 	Bioinformatics Brown Bag (Thursdays, 1-1:30pm ET, on Zoom) 
+	* Email `si-hpc@si.edu` (monitored by Matt, Vanessa, Alex, Tripp, Mike) 
 * CfA users:
 	* email [Sylvain](mailto:hpc@cfa.harvard.edu) or sign up for his [office hours](https://lweb.cfa.harvard.edu/cf/services/cluster/request-office-hours.html).
 
@@ -46,6 +49,7 @@ After attending this workshop, we hope users come away with these skills:
 ---
 
 ### Being a good Hydra citizen
+
 * We strive to provide support for users that is inclusive, welcoming, and helps you get your science done. 
 
 * We request that users be respectful when asking for help. While we attempt to answer questions rapidly, user support is no one's full-time duties.
@@ -55,6 +59,7 @@ After attending this workshop, we hope users come away with these skills:
 ---
 
 # Hydra (SI/HPC)
+
 ![](images/hydra-overview.jpg)
 
 ---
@@ -69,6 +74,7 @@ After attending this workshop, we hope users come away with these skills:
 ---
 
 ### How is a cluster different than a single-user system?
+
 * Hydra has 90 compute nodes with between 20 and 128 CPUs each, for a total of 4,896 CPUs.
 
 * Compute nodes have a range of 128GB to 2TB RAM each.
@@ -149,6 +155,7 @@ After attending this workshop, we hope users come away with these skills:
 ---
 
 ### Queues
+
 Hydra has different queues to accommodate different resource requests:
 * High CPU queues: `sThC.q`, `mThC.q`, `lThC.q`, `uThC.q`
 * High Memory queues: `sThM.q`, `mThM.q`, `lThM.q`, `uThM.q`
@@ -158,6 +165,7 @@ There are other more specialized queues, check the wiki for more information.
 ---
 
 ### Parallelization
+
 * Depending on the software, you may be able to run a job in **parallel**, which can speed up your analysis.
 * Some software uses **threaded** parallelization, where the job is divided across CPUs on a single compute node
 * Some software can be compiled to use **MPI** parallelization, where the job is divided across multiple compute nodes
@@ -171,6 +179,7 @@ Look at software documentation to check which kind of parallelization, if any, y
 ---
 
 ### Parallelization hints
+
 * Some (bioinformatics) software will grab all the CPUs on a compute node unless you tell it otherwise (*not appropriate on a shared machine*).
 
 ---
