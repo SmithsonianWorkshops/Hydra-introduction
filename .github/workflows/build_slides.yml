@@ -1,0 +1,59 @@
+name: Build slides (HTML + PDF) with Quarto
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-slides
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build & Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install decktape
+        run: npm install -g decktape
+
+      - name: Build slides HTML and PDF
+        run: ./render_slides_pdf.sh
+
+      - name: Commit built slides to the repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hydra_intro_slides.html hydra_intro_slides.pdf
+          if git diff --cached --quiet; then
+            echo "Slides unchanged; nothing to commit."
+          else
+            git commit -m "Rebuild slides (HTML + PDF)"
+            git push
+          fi
+
+      - name: Prepare GitHub Pages site
+        run: |
+          mkdir -p _site
+          cp hydra_intro_slides.html _site/index.html
+          cp hydra_intro_slides.pdf _site/
+
+      # Push the slides' HTML to the gh-pages branch
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
